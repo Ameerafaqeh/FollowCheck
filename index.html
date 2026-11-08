@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description"
+        content="قارن قوائم المتابعين والمتابَعين في إنستغرام محليًا بدون كلمة مرور أو رفع بياناتك لأي سيرفر.">
+    <meta name="theme-color" content="#fffafc">
+    <meta name="color-scheme" content="light">
+    <title>FollowCheck | حلّل متابعات إنستغرام بخصوصية</title>
+    <link rel="icon" href="favicon.png" type="image/png">
+    <meta property="og:title" content="FollowCheck | متابعاتك بوضوح">
+    <meta property="og:description" content="اعرف المتابعات غير المتبادلة بدون كلمة مرور، واحتفظ بتقدّمك على جهازك.">
+    <link rel="stylesheet" href="style.css?v=studio-3">
+</head>
+
+<body>
+    <header class="top"><a class="brand" href="#" aria-label="FollowCheck"><img src="followcheck-logo.png"
+                alt="FollowCheck" width="210" height="67"></a>
+        <nav><a href="#how">طريقة الاستخدام</a><a href="#download-guide">شرح تنزيل البيانات</a><a
+                href="#features">المميزات</a><a href="#privacy">الخصوصية</a><a href="#data">بياناتي</a><a
+                href="#contact">تواصل معنا</a></nav><button class="menu-toggle" id="menu-toggle" type="button"
+            aria-expanded="false" aria-controls="mobile-menu"
+            aria-label="فتح القائمة"><span></span><span></span><span></span></button>
+        <div class="mobile-menu" id="mobile-menu" hidden><a href="#analyze">ابدأ التحليل</a><a
+                href="#download-guide">شرح تنزيل البيانات</a><a href="#how">طريقة الاستخدام</a><a
+                href="#features">المميزات</a><a href="#privacy">الخصوصية</a><a href="#data">بياناتي</a><a
+                href="#contact">تواصل معنا</a></div>
+    </header>
+    <main>
+        <section class="hero wrap">
+            <div class="eyebrow hero-tag">✦ تحليل آمن وبسيط لمتابعات إنستغرام</div>
+
+            <h1>متابعاتك،<br><em>بصورة أوضح.</em></h1>
+
+            <p class="lead">
+                اكتشف الحسابات اللي ما بتتابعك بالمقابل،
+                واعرف مين بتابعك وإنت مش متابعه،
+                ونظّم قائمة متابعاتك بسهولة وخصوصية تامة.
+                كل التحليل بيتم على جهازك.
+            </p>
+
+            <a class="primary start" href="#analyze">
+                ابدأ التحليل <span>←</span>
+            </a>
+
+            <p class="small">
+                مجاني • بدون تسجيل دخول • بياناتك ما بتغادر جهازك
+            </p>
+
+            <div class="hero-chips"><span>✓ بدون كلمة سر</span><span>✓ بدون ربط إنستغرام</span><span>✓ مناسب
+                    للموبايل</span></div>
+        </section>
+        <section id="analyze" class="wrap panel">
+            <div class="sectiontop">
+                <div>
+                    <div class="eyebrow">01 / ANALYZE</div>
+                    <h2>ارفع ملفاتك</h2>
+                    <p>نزّل بيانات المتابعين والمتابَعين من إنستغرام بصيغة JSON (الأفضل) أو HTML، وارفع الملفين هون.</p>
+                </div><span class="pill">🔒 معالجة محلية</span>
+            </div>
+            <div class="uploadgrid"><label class="drop" id="followersDrop"><input id="followers" type="file" multiple
+                        accept=".json,.html,.htm,application/json,text/html"><span class="fileicon">↓</span><strong>ملف
+                        المتابعين</strong><span>followers_1.json أو followers.html</span><small id="followersName">اضغط
+                        لاختيار ملف أو عدة ملفات</small></label>
+                <label class="drop" id="followingDrop"><input id="following" type="file" multiple
+                        accept=".json,.html,.htm,application/json,text/html"><span class="fileicon">↓</span><strong>ملف
+                        المتابَعين</strong><span>following.json أو following.html</span><small id="followingName">اضغط
+                        لاختيار ملف أو عدة ملفات</small></label>
+            </div>
+            <div class="expected"><label>عدد المتابعين الظاهر في إنستغرام <input id="expectedFollowers" type="number"
+                        min="0" placeholder="مثال: 1139"></label><label>عدد المتابَعين الظاهر في إنستغرام <input
+                        id="expectedFollowing" type="number" min="0" placeholder="مثال: 2181"></label></div>
+            <p class="small">اختَر جميع ملفات followers_1 وfollowers_2 إن وجدت. أدخل الأعداد الحالية للتحقق من اكتمال
+                التصدير؛ قد تختلف عن وقت تنزيل الملفات.</p>
+            <div class="actions"><button id="analyzeBtn" class="primary" disabled>تحليل المتابعات ←</button><button
+                    id="clearBtn" class="subtle">مسح الملفات</button></div>
+            <div id="message" class="message" role="status" aria-live="polite"></div>
+            <div id="diagnostics" class="diagnostics" aria-live="polite"></div>
+        </section>
+        <section id="results" class="wrap panel hidden">
+            <div class="sectiontop">
+                <div>
+                    <div class="eyebrow">02 / RESULTS</div>
+                    <h2>نتائج التحليل</h2>
+                </div>
+                <div class="export-actions"><button id="copyUsersBtn" class="subtle" type="button">نسخ
+                        اليوزرات</button><button id="exportTxtBtn" class="subtle">تنزيل اليوزرات TXT ↓</button><button
+                        id="exportBtn" class="subtle">تصدير CSV ↓</button></div>
+            </div>
+            <div class="stats">
+                <div><small>المتابعين</small><strong id="countFollowers">0</strong></div>
+                <div><small>المتابَعون</small><strong id="countFollowing">0</strong></div>
+                <div><small>مش متابعينك</small><strong id="countNotBack">0</strong></div>
+                <div><small>بتابعوك وإنت لا</small><strong id="countFans">0</strong></div>
+            </div>
+            <div class="resulttools">
+                <div class="tabs"><button class="tab active" data-tab="notback">مش متابعينك</button><button class="tab"
+                        data-tab="fans">بتابعوك وإنت لا</button><button class="tab" data-tab="mutual">متابعة
+                        متبادلة</button></div><input id="search" type="search" placeholder="ابحث عن اسم مستخدم...">
+            </div>
+            <div class="filterbar"><label>ترتيب الحسابات <select id="dateSort">
+                        <option value="newest">الأحدث أولًا</option>
+                        <option value="oldest">الأقدم أولًا</option>
+                        <option value="az">حسب الاسم A–Z</option>
+                    </select></label></div>
+            <p class="small">التاريخ هو تاريخ المتابعة الموجود في الملف وليس تاريخ إلغاء المتابعة. الملفات القديمة قد
+                تحتوي حسابات تغيّرت متابعتها بعد التصدير.</p>
+            <div class="progressbox">
+                <div><strong>متابعة التقدّم اليدوي</strong>
+                    <p class="small">بعد ما تلغي متابعة حساب من تطبيق إنستغرام بنفسك، اضغطي «تم إلغاء متابعته». بنحفظ
+                        العلامة على هذا الجهاز ونخفيه من قائمة «مش متابعينك» حتى لو رفعتي نفس الملف القديم.</p>
+                    <p id="progressCount" class="small"></p><label class="goal-field">هدف يومي اختياري <input
+                            id="dailyGoal" type="number" min="1" max="500" value="30" inputmode="numeric"> حساب</label>
+                    <p id="dailyCount" class="small"></p>
+                </div>
+                <div class="progress-actions"><button id="showDoneBtn" class="subtle" type="button">عرض الحسابات
+                        المُعلّمة</button><button id="resetDoneBtn" class="subtle" type="button">مسح سجل
+                        العلامات</button></div>
+            </div>
+            <aside class="safety-note" role="note"><strong>تنبيه مهم قبل إلغاء المتابعات</strong>
+                <p>إذا عندك عدد كبير من الحسابات، لا تلغي أكثر من 100 متابعة متتالية أو في نفس اليوم كإجراء احترازي.
+                    قسّم الإلغاء على أيام وأوقات مختلفة وخذ فترات راحة؛ النشاط المكثّف ممكن يؤدي لتقييد حسابك. <b>الرقم
+                        100 مش حد رسمي أو ضمان للأمان</b>، وقد يحدث تقييد حتى مع عدد أقل. الموقع لا يلغي المتابعات
+                    تلقائيًا.</p>
+            </aside>
+            <p class="small">الموقع لا يتحقق من حالة الحساب الحية. علامات التقدّم يدوية فقط، وتُحفظ في هذا المتصفح.</p>
+            <p id="listCount" class="small"></p>
+            <div id="list" class="userlist"></div>
+            <div class="pagination"><button id="moreBtn" class="subtle hidden">عرض المزيد</button></div>
+        </section>
+        <section id="data" class="wrap panel">
+            <div class="sectiontop">
+                <div>
+                    <div class="eyebrow">03 / MY DATA</div>
+                    <h2>بياناتي وتقدّمي</h2>
+                    <p>كل شيء على جهازك. احتفظ بنسخة احتياطية إذا بدك تكمّل على جهاز ثاني.</p>
+                </div><span class="pill">محلي فقط</span>
+            </div>
+            <div class="data-grid">
+                <article class="data-card">
+                    <h3>نسخة احتياطية للتقدّم</h3>
+                    <p class="small">احفظ الحسابات التي علّمت عليها، واسترجعها لاحقًا أو على جهاز آخر. ملف النسخة
+                        الاحتياطية يحتوي أسماء المستخدمين.</p>
+                    <div class="actions wrap-actions"><button id="backupBtn" class="subtle" type="button">تنزيل نسخة
+                            التقدّم ↓</button><label class="subtle file-button">استرجاع نسخة ↑<input id="restoreFile"
+                                type="file" accept=".json,application/json" hidden></label></div>
+                </article>
+                <article class="data-card">
+                    <h3>تذكّر آخر تحليل</h3>
+                    <p class="small">اختياري: حفظ قوائم الحسابات محليًا لتجنب رفع ملفات إنستغرام في كل زيارة. التخزين
+                        غير مضمون بعد مسح بيانات المتصفح.</p><label class="switchline"><input type="checkbox"
+                            id="rememberToggle"> حفظ آخر تحليل على هذا الجهاز</label>
+                    <div class="actions wrap-actions"><button id="restoreSessionBtn" class="subtle" type="button">فتح
+                            آخر تحليل</button><button id="deleteSessionBtn" class="subtle" type="button">حذف التحليل
+                            المحفوظ</button></div>
+                </article>
+            </div>
+            <div class="dangerline"><button id="eraseAllBtn" class="subtle" type="button">مسح كل بيانات FollowCheck من
+                    هذا المتصفح</button><span class="small">لا يؤثر على حساب إنستغرام.</span></div>
+            <div id="dataMessage" class="message" role="status" aria-live="polite"></div>
+        </section>
+        <section id="features" class="wrap feature-section">
+            <div class="eyebrow">MADE FOR YOU</div>
+            <h2>كل اللي بتحتاجه، بمكان واحد.</h2>
+            <p class="section-intro">مش بس مقارنة أسماء؛ FollowCheck بيساعدك تفهم قوائمك وتنظّمها بدون تعقيد.</p>
+            <div class="feature-grid">
+                <article><span>◎</span>
+                    <h3>نتائج واضحة</h3>
+                    <p>شوف مين مش متابعك، ومين بتابعك، والمتابعات المتبادلة.</p>
+                </article>
+                <article><span>⌕</span>
+                    <h3>بحث وترتيب</h3>
+                    <p>ابحث عن أي يوزر ورتّب القوائم حسب الاسم أو تاريخ المتابعة.</p>
+                </article>
+                <article><span>⇩</span>
+                    <h3>تصدير بضغطة</h3>
+                    <p>نزّل أسماء المستخدمين TXT أو CSV حتى ترجع إلهم بسهولة.</p>
+                </article>
+                <article><span>✓</span>
+                    <h3>كمّل من وين وقفت</h3>
+                    <p>علّم الحسابات اللي ألغيت متابعتها، واحفظ نسخة من تقدّمك.</p>
+                </article>
+            </div>
+        </section>
+        <section id="how" class="wrap info">
+            <div class="eyebrow">HOW IT WORKS</div>
+            <h2>3 خطوات وبس</h2>
+            <div class="steps">
+                <article><b>01</b>
+                    <h3>نزّل بياناتك</h3>
+                    <p>من إعدادات إنستغرام، اطلب تنزيل معلومات المتابعين والمتابَعين بصيغة JSON واختَر «كل الوقت». <a
+                            class="inline-guide-link" href="#download-guide">شوف الشرح المصوّر ←</a></p>
+                </article>
+                <article><b>02</b>
+                    <h3>ارفع الملفين</h3>
+                    <p>افتح الملف المضغوط واختَر ملفات المتابعين والمتابَعين. ما بنطلب كلمة سر أو تسجيل دخول.</p>
+                </article>
+                <article><b>03</b>
+                    <h3>شوف النتائج</h3>
+                    <p>شوف النتائج، ابحث عن أي حساب، ونزّل قائمة اليوزرات. وإذا بلّشت تنظّم متابعاتك، احفظ تقدّمك.</p>
+                </article>
+            </div>
+        </section>
+        <section id="download-guide" class="wrap guide-section" aria-labelledby="guide-title">
+            <div class="eyebrow">FOLLOWCHECK · GUIDE</div>
+            <h2 id="guide-title">شرح تنزيل بيانات إنستغرام خطوة بخطوة</h2>
+            <p class="section-intro">شرح مصوّر خطوة بخطوة. اسحب الصورة يمين أو يسار على تلفونك، أو استخدم أزرار التنقّل.
+            </p>
+            <div class="guide-wizard" id="guide-wizard">
+                <div class="guide-toolbar"><span id="guide-counter">الخطوة 1 من 24</span><span id="guide-stage">إعدادات
+                        إنستغرام</span></div>
+                <div class="guide-progress" aria-hidden="true">
+                    <div id="guide-progress-fill"></div>
+                </div>
+                <div class="guide-content"><button class="guide-image-button" id="guide-zoom" type="button"
+                        aria-label="تكبير صورة الخطوة"><img id="guide-image" src="guide-images/step-01.webp"
+                            alt="صورة الخطوة الأولى" loading="lazy"><span class="guide-zoom-label">⤢ تكبير
+                            الصورة</span></button>
+                    <div class="guide-detail"><span class="guide-number" id="guide-number">01 / 24</span>
+                        <h3 id="guide-step-title"></h3>
+                        <p id="guide-step-desc"></p>
+                        <div class="guide-tip">🔒 الموقع ما بطلب كلمة سر إنستغرام، والتحليل بصير على جهازك.</div>
+                        <div class="guide-nav"><button id="guide-prev" type="button">السابق</button><button
+                                id="guide-next" type="button">التالي ←</button></div>
+                    </div>
+                </div>
+                <p class="guide-swipe-hint"><span aria-hidden="true">↔</span> اسحب للتنقّل · اضغط الصورة للتكبير</p>
+                <div class="guide-jump" id="guide-jump" aria-label="اختيار خطوة من الدليل"></div>
+            </div>
+            <p class="guide-footnote">ملاحظة: واجهة إنستغرام قد تختلف حسب الجهاز والتحديث. اختار «طوال الوقت» وJSON، ولا
+                تشارك ملف التصدير مع أي جهة غير موثوقة.</p>
+            <div class="guide-modal" id="guide-modal" hidden role="dialog" aria-modal="true"
+                aria-label="تكبير صورة الخطوة">
+                <div class="guide-modal-top"><span id="guide-modal-count">1 / 24</span><button type="button"
+                        id="guide-close" aria-label="إغلاق">×</button></div><button type="button"
+                    class="guide-modal-arrow" id="guide-modal-prev" aria-label="الصورة السابقة">❯</button><img
+                    id="guide-modal-image" alt="صورة الخطوة مكبّرة"><button type="button" class="guide-modal-arrow"
+                    id="guide-modal-next" aria-label="الصورة التالية">❮</button>
+            </div>
+        </section>
+        <section id="faq" class="wrap faq">
+            <div class="eyebrow">FAQ</div>
+            <h2>أسئلة ممكن تخطر ببالك</h2>
+            <details>
+                <summary>هل لازم أعطي كلمة سر إنستغرام؟</summary>
+                <p>لا. بتستخدم ملفات البيانات اللي بتنزلها بنفسك من إنستغرام.</p>
+            </details>
+            <details>
+                <summary>هل بقدر أستخدم الموقع من التلفون؟</summary>
+                <p>نعم. الموقع بيشتغل من متصفح التلفون أو الكمبيوتر، وبتقدر تختار ملفات JSON من جهازك.</p>
+            </details>
+            <details>
+                <summary>هل الموقع بعرف مين ألغى متابعتي أمس؟</summary>
+                <p>مش من ملف واحد. النتائج بتقارن المتابعين والمتابَعين وقت تصدير البيانات، وما بتثبت متى صار إلغاء
+                    المتابعة.</p>
+            </details>
+            <details>
+                <summary>إذا رجعت بكرا، بروح تقدّمي؟</summary>
+                <p>العلامات بتضل محفوظة محليًا على نفس المتصفح ما دمت ما مسحت بياناته. وللنقل بين الأجهزة استخدم تنزيل
+                    واسترجاع نسخة التقدّم.</p>
+            </details>
+        </section>
+        <section id="privacy" class="wrap privacy"><span class="lock">⌁</span>
+            <div>
+                <h2>خصوصيتك أولًا.</h2>
+                <p>الملفات تُقرأ وتُحلّل داخل متصفحك باستخدام JavaScript، ولا يتم إرسال محتوياتها إلى خادم. لا نطلب كلمة
+                    مرور ولا نتصل بحساب إنستغرام. إغلاق الصفحة أو مسح النتائج يزيل القوائم من واجهة التطبيق، لكن علامات
+                    «تم إلغاء متابعته» تُحفظ محليًا في المتصفح حتى تمسحيها بنفسك. ويمكنك اختيار حفظ قوائم التحليل في
+                    مساحة تخزين المتصفح؛ لا تُرسل البيانات إلى خادم تابع للموقع. ملفات النسخ الاحتياطية التي تنزّلها قد
+                    تحتوي أسماء حسابات، فاحفظها في مكان آمن.</p>
+                <p class="small">تنبيه: القائمة الحالية تُظهر من لا يتابعك الآن، ولا تثبت أن شخصًا ألغى متابعتك سابقًا.
+                    هذا الموقع غير تابع لـ Instagram أو Meta.</p>
+            </div>
+        </section>
+        <section id="contact" class="wrap contact">
+            <div>
+                <div class="eyebrow">CONTACT</div>
+                <h2>عندك سؤال أو اقتراح؟</h2>
+                <p>حابب تقترح ميزة جديدة أو واجهتك مشكلة؟ تواصل معنا على صفحات ORLA.</p>
+            </div>
+            <div class="contact-actions"><a class="primary" href="https://www.instagram.com/o_rl.a/" target="_blank"
+                    rel="noopener noreferrer">إنستغرام ORLA ↗</a><a class="subtle" id="facebookLink"
+                    href="https://www.facebook.com/profile.php?id=6157930782590" target="_blank"
+                    rel="noopener noreferrer">فيسبوك ORLA ↗</a></div>
+        </section>
+    </main>
+    <div class="mobile-dock" aria-label="تنقّل سريع"><a href="#analyze"><span aria-hidden="true">↥</span>التحليل</a><a
+            href="#download-guide"><span aria-hidden="true">▧</span>الشرح</a><a href="#results" id="dock-results"><span
+                aria-hidden="true">▤</span>النتائج</a></div>
+    <footer class="wrap"><span>© <span id="year"></span> FollowCheck</span><span>صُنع بعناية لخصوصيتك • غير تابع
+            لإنستغرام أو Meta</span></footer>
+    <script src="app.js?v=studio-3" defer></script>
+    <script src="mobile-menu.js?v=studio-3" defer></script>
+</body>
+
+</html>
